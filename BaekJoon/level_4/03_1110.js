@@ -7,7 +7,7 @@ solution(+input[0]);
 function solution (N) {
     let sum = N;
     let cycle = 0;
-    while(sum !== N || cycle === 0) {
+    while (sum !== N || cycle === 0) {
         let ten;
         let one;
         if (sum >= 10) {
@@ -20,12 +20,13 @@ function solution (N) {
         sum = ten + one;
 
         let sumOne;
-        if (sumOne >= 10) {
-            sumOne = +String(sum)[1];
+        if (sum >= 10) {
+            sumOne = +String(sum)[1]
         } else {
             sumOne = +String(sum)[0];
         }
         sum = +(String(one) + String(sumOne));
+
         cycle++;
     }
     console.log(cycle);
