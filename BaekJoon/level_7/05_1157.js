@@ -2,7 +2,9 @@ const fs = require('fs');
 const filePath =  process.platform === 'linux' ? '/dev/stdin' : './input.txt';
 let input = fs.readFileSync(filePath).toString().trim();
 
-const solution = s => {
+solution(input);
+
+function solution (s) {
   const word = s.toLowerCase(); //대소문자 구분하지 않으므로 소문자로 통일
  
   const result = new Array(26).fill(0); //알파벳 개수만큼 배열선언 후 0(단어개수 카운트)으로 채운다 
@@ -21,5 +23,3 @@ const solution = s => {
     console.log('?'); // 아니면 2개 이상이라는 말이므로 ? 출력
   }
 };
-
-solution(input);
