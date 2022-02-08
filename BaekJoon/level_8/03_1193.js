@@ -7,8 +7,8 @@ solution(+input);
 function solution (X) {
     groupCounter = 0;
 
-    const Ascending = [];
-    const Descending = [];
+    const Ascending = []; //오름차순
+    const Descending = []; //내림차순
     
     while(X > 0){
       groupCounter ++; 
@@ -27,7 +27,8 @@ function solution (X) {
     }
 }
 
-/* 다른풀이
+/* 
+다른풀이
 const fs = require('fs');
 const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
 let input = fs.readFileSync(filePath).toString();
