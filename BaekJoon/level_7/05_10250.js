@@ -2,27 +2,52 @@ const fs = require('fs');
 const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
 let input = fs.readFileSync(filePath).toString().split('\n');
 
-const inputT = +input[0];
-let testdataArr = [];
-for (let i = 1; i <= inputT; i++) {
-    let tempValue = input[i].split(' ').map((item) => +item);
-    testdataArr.push({H : tempValue[0], W : tempValue[1], N : tempValue[2]});
+let testcaseArr = [];
+for (let i = 1; i <= +input[0]; i++) {
+    let tempValue = input[i].split(' ').map((item)=>+item);
+    testcaseArr.push({H : tempValue[0], W : tempValue[1], N : tempValue[2]});
 }
 
-solution (inputT, testdataArr);
-function solution(T, testDataArr) {
+solution (+input[0], testcaseArr);
+function solution (T, testCaseArr) {
     for (let i = 0; i < T; i++) {
-        let H = testDataArr[i].H;
-        let N = testDataArr[i].N;
-        if (N % H === 0) {
-            fl = H;
-            ho = N / H;
-        } else {
-            fl = N % H;
-            ho = Math.floor(N / H) + 1;
+        let H = testCaseArr[i].H;
+        let N = testCaseArr[i].N;
+        let floor = N - H;
+        let Count = 0;
+        while (N >= 0) {
+            N = N - H;
+            Count++;
         }
-
-        if (ho < 10) {ho = `0${ho}`;}
-        console.log(`${fl}${ho}`);
+        if (Count < 10) {
+            Count = 0+String(Count);
+        }
+        console.log(String(N+H)+String(Count));
     }
 }
+
+/*
+const fs = require('fs');
+const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
+let input = fs.readFileSync(filePath).toString().split('\n');
+
+const T = +(input.shift());
+
+for (let i = 0; i < T; i++) {
+    const HWN = input[i].split(' ');
+    let H = +(HWN.shift());
+    HWN.shift();
+    let N = +(HWN.shift());
+    let roomCnt = 1;
+
+    while (N > H) {
+        roomCnt++;
+        N -= H;
+    }
+    if (roomCnt < 10) {
+        console.log(`${N}0${roomCnt}`);
+    } else {
+        console.log(`${N}${roomCnt}`);
+    }
+}
+*/
